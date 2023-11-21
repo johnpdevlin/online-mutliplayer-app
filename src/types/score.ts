@@ -4,11 +4,10 @@ export type PlayerScore = {
 	scoreID: string;
 	rounds: RoundScore[];
 	totalScore: number;
-	ranking: number;
+	ranking?: number;
 };
 
 export type RoundScore = {
-	ranking: number;
-	round: number;
+	roundNo: number;
 	score: number;
 };
