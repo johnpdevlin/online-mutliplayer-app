@@ -1,10 +1,16 @@
 /** @format */
 
-type Card = {
-	type: 'N' | 'Z' | 'Coloured';
+export type CardColour = 'red' | 'green' | 'blue' | 'yellow';
+export type CardValue = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+export type JokerCard = { cardID: number; type: 'joker' };
+export type WizardCard = { cardID: number; type: 'wizard' };
+
+export type ColouredCard = {
+	cardID: number;
+	type: 'coloured';
+	colour: CardColour;
+	value: CardValue;
 };
 
-type ColouredCard = {
-	colour: 'red' | 'green' | 'blue' | 'yellow';
-	number: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-} & Card;
+export type Card = JokerCard | WizardCard | ColouredCard;
