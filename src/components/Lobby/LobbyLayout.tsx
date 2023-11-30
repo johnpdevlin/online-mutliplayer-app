@@ -1,11 +1,18 @@
 /** @format */
 
-import { Box, Grid, Typography } from '@mui/material';
-import PlayerElement from './PlayerEl';
+import { Box, Grid, LinearProgress, Typography } from '@mui/material';
+import PlayerElement from '../PlayerEl';
+import InviteDialog from './InviteDialog';
+import InviteButton from './InviteButton';
+import Button from './Button';
+import LobbyButton from './Button';
 
 const LobbyLayout = () => {
 	return (
 		<>
+			<Box sx={{ width: '100%' }}>
+				<LinearProgress color='inherit' />
+			</Box>
 			<Box
 				justifyContent='center'
 				alignContent='center'
@@ -37,34 +44,15 @@ const LobbyLayout = () => {
 						</Typography>
 					</Grid>
 					<Grid item xs={5}>
-						<Box
-							sx={{
-								display: 'flex',
-								minHeight: '9vh',
-								backgroundColor: 'ButtonShadow',
-								borderRadius: '18px',
-								justifyItems: 'center',
-								justifyContent: 'center',
-								alignItems: 'center',
-							}}>
-							<Typography variant='h5'>Invite Friends</Typography>
-						</Box>
+						<InviteButton />
 					</Grid>
 					<Grid item xs={5}>
-						<Box
-							sx={{
-								display: 'flex',
-								minHeight: '9vh',
-								backgroundColor: 'ButtonShadow',
-								borderRadius: '18px',
-								justifyItems: 'center',
-								justifyContent: 'center',
-								alignItems: 'center',
-							}}>
-							<Typography variant='h5'>Start Game</Typography>
-						</Box>
+						<LobbyButton text={'Start Game'} handleClick={() => {}} />
 					</Grid>
 				</Grid>
+			</Box>
+			<Box sx={{ width: '100%' }}>
+				<LinearProgress color='inherit' />
 			</Box>
 		</>
 	);
