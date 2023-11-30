@@ -31,7 +31,11 @@ const LobbyLayout = () => {
 					<Grid xs={5} md={3.3} lg={2.5}>
 						<PlayerElement name={'John'} playerStatus='invited' />
 					</Grid>
-					<Grid item xs={10} />
+					<Grid item xs={10} mt='15px'>
+						<Typography variant='body1'>
+							Waiting for players to join...
+						</Typography>
+					</Grid>
 					<Grid item xs={5}>
 						<Box
 							sx={{
