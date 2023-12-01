@@ -22,14 +22,14 @@ const CopyTextBox = (props: { text: string }) => {
 
 	return (
 		<Grid container>
-			<Grid xs={2} />
-			<Grid xs={8}>
+			<Grid xs={1.5} />
+			<Grid xs={9}>
 				<Button
 					onClick={handleCopyClick}
 					onMouseLeave={() => setIsCopied(false)}
 					sx={{
 						padding: '20px',
-						maxWidth: '100%',
+						width: '100%',
 						backgroundColor: 'red',
 						cursor: 'pointer',
 						transition: 'opacity 0.3s ease',
@@ -43,15 +43,17 @@ const CopyTextBox = (props: { text: string }) => {
 							opacity: 0.6,
 						},
 					}}>
-					<Stack direction='row' spacing={2} maxHeight='25px' maxWidth='80%'>
+					<Stack direction='row' spacing={1} height='25px' width='100%'>
 						<Typography variant='h6' overflow='hidden' textOverflow='ellipsis'>
 							{text}
 						</Typography>
-						{isCopied ? 'Copied' : <ContentCopy />}
+						<Box width='20px'>
+							{isCopied ? 'COPIED' : <ContentCopy fontSize='small' />}
+						</Box>
 					</Stack>
 				</Button>
 			</Grid>
-			<Grid xs={2} />
+			<Grid xs={1.5} />
 		</Grid>
 	);
 };
