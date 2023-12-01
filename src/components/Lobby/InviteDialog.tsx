@@ -50,17 +50,19 @@ const InviteDialog = (props: InviteDialogProps) => {
 				<Box
 					sx={{ backgroundColor: 'blue' }}
 					maxWidth='100%'
-					paddingY='50px'
-					paddingX='50px'
+					paddingY='45px'
+					paddingX='45px'
 					display='flex'
 					borderRadius='55px'
 					flexDirection='column'
 					alignItems='center'>
-					<DialogTitle>
-						<Typography variant='h3'>Invite Friends</Typography>
+					<DialogTitle width='333px'>
+						<Typography variant='h3' textAlign='justify'>
+							Invite Friends
+						</Typography>
 					</DialogTitle>
 					<DialogContent>
-						<DialogContentText margin='0 auto' maxWidth='50% '>
+						<DialogContentText margin='0 auto' width='281px'>
 							<Typography variant='body1' textAlign='justify'>
 								Send this link to your friend and they can join the game.
 							</Typography>
