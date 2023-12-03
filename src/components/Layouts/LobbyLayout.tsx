@@ -2,12 +2,12 @@
 
 import { Box, Grid, LinearProgress, Typography } from '@mui/material';
 import PlayerElement from '../PlayerEl';
-import InviteDialog from './InviteDialog';
-import InviteButton from './InviteButton';
-import Button from './Button';
-import LobbyButton from './Button';
+import InviteDialog from '../Lobby/InviteDialog';
+import InviteButton from '../Lobby/InviteButton';
+import Button from '../Lobby/Button';
+import LobbyButton from '../Lobby/Button';
 
-const LobbyLayout = () => {
+const LobbyLayout = (): JSX.Element => {
 	return (
 		<>
 			<Box sx={{ width: '100%' }}>
