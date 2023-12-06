@@ -3,6 +3,9 @@
 import { Server, Socket } from 'socket.io';
 import { NextApiRequest, NextApiResponse } from 'next';
 import getUniqueGameID from '@/functions/_utils/getUniqueGameID';
+import handleCreateGame from '@/functions/handleCreateGame';
+import { Game } from '@/classes/game';
+import gameCacheInstance from '@/server/gameCache';
 
 const socketHandler = (req: NextApiRequest, res: NextApiResponse) => {
 	let io: Server; // Declare io outside of if-else block
@@ -19,31 +22,39 @@ const socketHandler = (req: NextApiRequest, res: NextApiResponse) => {
 	io.on('connection', (socket: Socket) => {
 		console.info('Connection established. ', socket.id);
 
-		socket.on('create-game', (data: { playerName: string }) => {
-			console.info('create-game event received.');
+		socket.on(
+			'create-game',
+			(data: { playerName: string; playerID?: string }) => {
+				console.info('create-game event received.');
 
-			if (data && data.playerName) {
-				console.info('Player Name:', data.playerName);
+				if (data) {
+					const game = new Game();
+					const gameID = game.gameID;
+					handleCreateGame(
+						game,
+						data.playerName,
+						data.playerID ? data.playerID : undefined
+					);
 
-				const gameID = getUniqueGameID();
-
-				// You can store the game information (e.g., players, state) on the server
-				// Emit an event to the creator with the game code
-				socket.emit('game-created', {
-					playerName: data.playerName,
-					gameID: gameID,
-				});
-			} else {
-				console.error('Invalid data received:', data);
+					socket.emit('game-created', {
+						gameID: game.gameID,
+					});
+				} else {
+					console.error('Invalid data received:', data);
+				}
 			}
-		});
+		);
 
-		socket.on('join-game', (data: { gameCode?: string }) => {
-			if (data && data.gameCode) {
+		socket.on('join-game', (data: { gameID: string }) => {
+			if (data) {
 				socket.emit('game-exists', true);
 			} else {
 				socket.emit('game-exists', false);
 			}
+		});
+
+		socket.on('get-all-games', () => {
+			socket.emit('cached-games', { word: 'hello' });
 		});
 
 		socket.on('error', (err) => {
