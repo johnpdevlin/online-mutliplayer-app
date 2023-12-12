@@ -5,21 +5,26 @@ import Image from 'next/image';
 import Willem from '@/images/willem.jpg';
 import { CheckCircleOutline, PendingOutlined } from '@mui/icons-material';
 import { capitaliseFirstLetters } from '@/functions/_utils/strings';
-const PlayerElement = (props: {
-	name: string;
-	imgURL?: string;
-	playerStatus: string;
-}) => {
+import { PlayerGameStatus } from '../types/player';
+
+type PlayerElementProps = PlayerGameStatus & { imgURL?: string };
+
+const PlayerElement = ({ name, imgURL, status, guess }: PlayerElementProps) => {
 	const icon = () => {
-		if (props.playerStatus === 'ready')
+		if (status === 'ready' || status === 'guessed')
 			return <CheckCircleOutline fontSize='small' color='success' />;
-		else if (props.playerStatus === 'invited') return <PendingOutlined />;
-		else if (props.playerStatus === 'user') return;
+		else if (status === 'invited' || status === 'waiting')
+			return <PendingOutlined />;
+		else if (status === 'user') return;
 	};
 	const playerStatus = () => {
-		if (props.playerStatus === 'user') return 'Me';
-		else return capitaliseFirstLetters(props.playerStatus);
+		if (status === 'user') return 'Me';
+		else return capitaliseFirstLetters(status);
 	};
+
+	const isHighlighted =
+		status == 'guessing' ? true : status === 'ready' && !guess ? true : false;
+
 	return (
 		<>
 			<Box
@@ -32,20 +37,21 @@ const PlayerElement = (props: {
 					backgroundColor: 'rgba(255, 0, 0, 0.3)',
 					display: 'flex',
 					width: '100%',
+					opacity: isHighlighted! ? 1 : 0.5,
 				}}>
 				<Stack flexDirection='column'>
 					<Image
-						src={props.imgURL ? props.imgURL : Willem}
+						src={imgURL ? imgURL : Willem}
 						width={100}
 						height={100}
 						style={{
 							borderRadius: '50%',
 							marginBottom: '10px',
 						}}
-						alt={props.name}
+						alt={name}
 					/>
 
-					<Typography variant='h3'>{props.name}</Typography>
+					<Typography variant='h3'>{name}</Typography>
 					<Stack
 						direction='row'
 						spacing={1}
@@ -53,7 +59,7 @@ const PlayerElement = (props: {
 						alignItems='center'>
 						{icon()}
 						<Typography variant='h6' color='GrayText'>
-							{playerStatus()}
+							{guess! ? `${guess} Tricks` : playerStatus()}
 						</Typography>
 					</Stack>
 				</Stack>
