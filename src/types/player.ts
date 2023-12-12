@@ -7,3 +7,18 @@ export type GamePlayer = {
 	name: string;
 	playerID: string;
 };
+
+export type PlayerGameStatus = PlayerLobbyStatus | PlayerGuessStatus;
+
+export type PlayerLobbyStatus = {
+	name: string;
+	playerID: string;
+	status: 'invited' | 'ready';
+};
+
+export type PlayerGuessStatus = {
+	name: string;
+	playerID: string;
+	status: 'guessing' | 'waiting' | 'guessed';
+	guess?: number;
+};
