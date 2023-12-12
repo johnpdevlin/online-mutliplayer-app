@@ -1,18 +1,22 @@
 /** @format */
 
+import { Card } from '@/types/card';
 import {
 	FollowTheSignsOutlined,
 	StarBorderPurple500,
 } from '@mui/icons-material';
 import { Box, Stack, Typography } from '@mui/material';
+import PlayingCard from './PlayingCard';
 
-const GameCard = (props: {
-	children: JSX.Element;
+interface GameCardProps {
+	card: Card;
 	type: 'trump' | 'follow';
-}) => {
-	const colour = props.type === 'trump' ? 'gold' : 'white';
+}
+
+const GameCard = ({ card, type }: GameCardProps): JSX.Element => {
+	const colour = type === 'trump' ? 'gold' : 'white';
 	const icon =
-		props.type === 'trump' ? (
+		type === 'trump' ? (
 			<StarBorderPurple500 fontSize='large' />
 		) : (
 			<FollowTheSignsOutlined fontSize='large' />
@@ -34,14 +38,13 @@ const GameCard = (props: {
 						<Typography color={colour}>{icon}</Typography>
 
 						<Typography color={colour} variant='h4' textAlign='center'>
-							{props.type.toUpperCase()}
+							{type.toUpperCase()}
 						</Typography>
 						<Typography color={colour}>
-							<>{props.type === 'trump' && icon}</>
+							<>{type === 'trump' && icon}</>
 						</Typography>
 					</Stack>
-
-					{props.children}
+					<PlayingCard card={card} />
 				</Stack>
 			</Box>
 		</>
