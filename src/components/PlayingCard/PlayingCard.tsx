@@ -5,10 +5,10 @@ import { Box, Typography } from '@mui/material';
 
 interface PlayingCardProps {
 	card: Card;
-	isAvailable: boolean;
+	isNotAvailable?: boolean;
 }
 
-const PlayingCard = ({ card, isAvailable }: PlayingCardProps) => {
+const PlayingCard = ({ card, isNotAvailable }: PlayingCardProps) => {
 	const character = () => {
 		if (card.type === 'joker') return 'J';
 		else if (card.type === 'wizard') return 'Z';
@@ -40,7 +40,7 @@ const PlayingCard = ({ card, isAvailable }: PlayingCardProps) => {
 				sx={{
 					background: colour(),
 					position: 'relative',
-					opacity: isAvailable! ? 1 : 0.5,
+					opacity: isNotAvailable! ? 0.5 : 1,
 				}}>
 				<Box
 					width='180px'
