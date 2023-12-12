@@ -1,8 +1,7 @@
 /** @format */
 
-import { Typography } from '@mui/material';
 import { useState } from 'react';
-import LobbyButton from './Button';
+import Button from './Button';
 import InviteDialog from './InviteDialog';
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 export default function InviteButton() {
@@ -20,7 +19,7 @@ export default function InviteButton() {
 
 	return (
 		<>
-			<LobbyButton text={'Invite Friends'} handleClick={handleClickOpen} />
+			<Button text={'Invite Friends'} handleClick={handleClickOpen} />
 
 			<InviteDialog
 				selectedValue={selectedValue}

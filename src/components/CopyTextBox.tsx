@@ -1,13 +1,6 @@
 /** @format */
 
-import {
-	Box,
-	Button,
-	Grid,
-	Stack,
-	TextareaAutosize,
-	Typography,
-} from '@mui/material';
+import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import { ContentCopy } from '@mui/icons-material';
 import { useState } from 'react';
 
