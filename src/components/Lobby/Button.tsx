@@ -3,7 +3,10 @@
 import { Typography } from '@mui/material';
 
 /** @format */
-const LobbyButton = (props: { text: string; handleClick: () => void }) => {
+const LobbyButton = (props: {
+	text: string;
+	handleClick: () => void;
+}): JSX.Element => {
 	return (
 		<>
 			<button

@@ -2,10 +2,10 @@
 
 import { Box, Grid, LinearProgress, Typography } from '@mui/material';
 import PlayerElement from '../PlayerEl';
-import InviteDialog from '../Lobby/InviteDialog';
-import InviteButton from '../Lobby/InviteButton';
-import Button from '../Lobby/Button';
-import LobbyButton from '../Lobby/Button';
+import InviteDialog from '../lobby/InviteDialog';
+import InviteButton from '../lobby/InviteButton';
+import Button from '../lobby/Button';
+import LobbyButton from '../lobby/Button';
 import { Dispatch, SetStateAction } from 'react';
 import GamePlayer from '@/classes/player';
 import PlayerGrid from '../PlayerGrid';
