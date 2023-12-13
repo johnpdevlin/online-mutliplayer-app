@@ -1,15 +1,16 @@
 /** @format */
 
 import React, { useState, useEffect, useTransition } from 'react';
-import GameCard from '../PlayingCard/GameCard';
+import GameCard from '../playing_card/GameCard';
 import { Card } from '@/types/card';
-import PlayerHand from '../PlayingCard/PlayerHand';
+import PlayerHand from '../playing_card/PlayerHand';
 import { PlayerGuessStatus } from '@/types/player';
 import PlayerGrid from '../PlayerGrid';
 import { Grid, Stack } from '@mui/material';
 import '@/styles/Guess.module.css';
 import { PlayerGameStatus } from '../../types/player';
-import ScoreCard from '../SideBars/ScoreCard';
+import ScoreCard from '../side_bars/ScoreCard';
+import MakeGuess from '../guess/MakeGuess';
 
 type GuessState = 'trump' | 'cards' | 'waiting' | 'guessing';
 
@@ -78,7 +79,14 @@ const GuessLayout = (): JSX.Element => {
 	};
 
 	const renderPlayerBio = () => {
-		return <PlayerGrid players={players} />;
+		return (
+			<PlayerGrid
+				players={players}
+				buttons={
+					<MakeGuess maxGuesses={6} handleClick={() => console.log('hello')} />
+				}
+			/>
+		);
 	};
 
 	const getContent = () => {
