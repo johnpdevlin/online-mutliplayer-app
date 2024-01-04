@@ -31,16 +31,23 @@ const SelectComponent = ({
 
 	return (
 		<div>
-			<FormControl sx={{ p: 2, width: '100%' }}>
+			<FormControl sx={{ p: 2, width: '100%' }} variant='outlined'>
 				<InputLabel id={`simple-${label}-select-helper-label`}>
 					{label}
 				</InputLabel>
 				<Select
+					sx={{ backgroundColor: 'whitesmoke' }}
 					labelId={`simple-${label}-select-helper-label`}
 					id={`simple-${label}-select-helper`}
-					value={state! ? state.toString() : ''}
+					value={state ? state.toString() : ''}
 					label={label}
-					onChange={handleChange}>
+					onChange={handleChange}
+					displayEmpty>
+					{!state && (
+						<MenuItem value='' disabled style={{ display: 'none' }}>
+							{helperText || 'Select an option'}
+						</MenuItem>
+					)}
 					{values.map((v) => (
 						<MenuItem value={v} key={v.toString()}>
 							{v.toString()}
